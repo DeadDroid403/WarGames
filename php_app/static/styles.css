@@ -1,0 +1,384 @@
+/* --- CSS VARIABLES & RESET --- */
+:root {
+    --bg-color: #050510;
+    --primary-accent: #00f3ff; /* Cyan Neon */
+    --secondary-accent: #bc13fe; /* Purple Neon */
+    --text-color: #e0e0e0;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(188, 19, 254, 0.15) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.15) 0%, transparent 25%);
+}
+
+/* --- ANIMATED HEADER --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: 0.4s;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+}
+
+header.sticky {
+    background: rgba(5, 5, 16, 0.8);
+    padding: 15px 50px;
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--secondary-accent);
+}
+
+.logo span {
+    color: var(--primary-accent);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 500;
+    position: relative;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-links a:hover {
+    color: var(--primary-accent);
+    text-shadow: 0 0 8px var(--primary-accent);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--secondary-accent);
+    transition: 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.btn-login {
+    padding: 8px 20px;
+    border: 2px solid var(--primary-accent);
+    border-radius: 4px;
+    color: var(--primary-accent) !important;
+    font-weight: 700 !important;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    background: var(--primary-accent);
+    color: #000 !important;
+    box-shadow: 0 0 15px var(--primary-accent);
+}
+
+.btn-login::after { content: none !important; }
+
+/* --- HERO SECTION --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #fff, var(--primary-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glitch 2s infinite;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    max-width: 600px;
+    margin-bottom: 40px;
+    color: #aaa;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-main {
+    padding: 15px 40px;
+    background: linear-gradient(45deg, var(--secondary-accent), #9400d3);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 20px rgba(188, 19, 254, 0.4);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.btn-main:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(188, 19, 254, 0.8);
+}
+
+.btn-secondary {
+    padding: 15px 40px;
+    background: transparent;
+    border: 2px solid var(--glass-border);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.btn-secondary:hover {
+    border-color: var(--primary-accent);
+    color: var(--primary-accent);
+}
+
+/* --- STATS SECTION (Glassmorphism) --- */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: -80px;
+    padding-bottom: 100px;
+    z-index: 10;
+    position: relative;
+}
+
+.stat-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    padding: 30px 50px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-accent);
+    box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2);
+}
+
+.stat-card h3 {
+    font-size: 2.5rem;
+    color: var(--primary-accent);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.stat-card p {
+    font-size: 1.1rem;
+    color: #ccc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- FOOTER --- */
+footer {
+    background: #020205;
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+}
+
+footer p {
+    color: #666;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+footer .socials {
+    margin-top: 15px;
+}
+
+footer .socials a {
+    color: #666;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+footer .socials a:hover {
+    color: var(--primary-accent);
+}
+
+/* --- GLITCH ANIMATION KEYFRAMES --- */
+@keyframes glitch {
+    0% { text-shadow: 2px 2px var(--secondary-accent), -2px -2px var(--primary-accent); }
+    25% { text-shadow: -2px 2px var(--secondary-accent), 2px -2px var(--primary-accent); }
+    50% { text-shadow: 2px -2px var(--secondary-accent), -2px 2px var(--primary-accent); }
+    75% { text-shadow: -2px -2px var(--secondary-accent), 2px 2px var(--primary-accent); }
+    100% { text-shadow: 2px 2px var(--secondary-accent), -2px -2px var(--primary-accent); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header { padding: 15px 20px; }
+    .nav-links { display: none; } /* Hide nav on mobile for simplicity in this demo */
+    .hero h1 { font-size: 2.5rem; }
+    .stats-container { flex-direction: column; align-items: center; margin-top: 0; }
+    .stat-card { width: 80%; }
+}
+
+
+
+/* ------------------------------ LOGIN PAGE SPECIFIC STYLES ------------------------------ */
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(5, 5, 16, 0.6);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Neon Top Border Effect */
+.login-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--secondary-accent), var(--primary-accent));
+}
+
+.login-card h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary-accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 5px;
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    transition: 0.3s;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.error-msg {
+    background: rgba(255, 0, 50, 0.2);
+    color: #ff4d4d;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 0, 50, 0.3);
+}
+
+.register-link {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.register-link a {
+    color: var(--primary-accent);
+    font-weight: bold;
+}

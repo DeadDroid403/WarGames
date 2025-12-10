@@ -2,9 +2,13 @@ services:
   web:
     build: .
     volumes:
-      - ./php-app:/var/www/html
+      - ./php_app:/var/www/html
     ports:
-      - "9000:9000"
+      - "80:80"
+    environment:
+      POSTGRES_DB: ctf
+      POSTGRES_USER: ctf
+      POSTGRES_PASSWORD: example
     depends_on:
       - db
 
