@@ -1,0 +1,21 @@
+services:
+  web:
+    build: .
+    volumes:
+      - ./php-app:/var/www/html
+    ports:
+      - "9000:9000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ctf
+      POSTGRES_USER: ctf
+      POSTGRES_PASSWORD: example
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
