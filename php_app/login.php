@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | DDsec Wargames</title>
+    <title>Login | DDsec</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -59,10 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <header id="navbar">
-        <a href="index.php" class="logo">DDsec <span>Wargames</span></a>
+        <a href="index.php" class="logo">DD<span>sec</span></a>
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
-            <li><a href="challenges.php">Challenges</a></li>
             <li><a href="register.php" class="btn-login" style="border-color: var(--secondary-accent); color: var(--secondary-accent) !important;">Register</a></li>
         </ul>
     </header>

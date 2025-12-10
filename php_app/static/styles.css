@@ -24,6 +24,11 @@ body {
     background-image: 
         radial-gradient(circle at 15% 50%, rgba(188, 19, 254, 0.15) 0%, transparent 25%),
         radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.15) 0%, transparent 25%);
+    
+    /* --- NEW STICKY FOOTER LOGIC --- */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Forces body to take at least full screen height */
 }
 
 /* --- ANIMATED HEADER --- */
@@ -110,7 +115,7 @@ header.sticky {
 .btn-login:hover {
     background: var(--primary-accent);
     color: #000 !important;
-    box-shadow: 0 0 15px var(--primary-accent);
+    box-shadow: 0 0 10px var(--primary-accent);
 }
 
 .btn-login::after { content: none !important; }
@@ -160,6 +165,8 @@ header.sticky {
 .cta-buttons {
     display: flex;
     gap: 20px;
+    justify-content: center;
+    margin: 20px;
 }
 
 .btn-main {
@@ -241,11 +248,14 @@ header.sticky {
 }
 
 /* --- FOOTER --- */
+/* This pushes the footer to the bottom */
 footer {
+    margin-top: auto; /* Uses flexbox magic to push to the bottom */
     background: #020205;
     padding: 40px 0;
     text-align: center;
     border-top: 1px solid var(--glass-border);
+    width: 100%;
 }
 
 footer p {
@@ -381,4 +391,377 @@ footer .socials a:hover {
 .register-link a {
     color: var(--primary-accent);
     font-weight: bold;
+}
+
+
+
+
+
+
+
+/* --- CHALLENGES PAGE STYLES --- */
+
+/* Search Bar Area */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin: 120px 0 50px 0; /* Spacing below fixed header */
+    padding: 0 20px;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px 50px 15px 20px;
+    background: rgba(5, 5, 16, 0.8);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-family: 'Rajdhani', sans-serif;
+    outline: none;
+    transition: 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.search-box input:focus {
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+}
+
+.search-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-accent);
+    font-size: 1.2rem;
+}
+
+/* Challenges Grid */
+.challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    padding: 0 50px 100px 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Challenge Card */
+.challenge-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 25px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+}
+
+.challenge-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--secondary-accent);
+    box-shadow: 0 10px 30px rgba(188, 19, 254, 0.15);
+}
+
+/* Difficulty Badges */
+.badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.easy { background: rgba(0, 255, 136, 0.2); color: #00ff88; border: 1px solid rgba(0, 255, 136, 0.4); }
+.medium { background: rgba(255, 204, 0, 0.2); color: #ffcc00; border: 1px solid rgba(255, 204, 0, 0.4); }
+.hard { background: rgba(255, 0, 68, 0.2); color: #ff0044; border: 1px solid rgba(255, 0, 68, 0.4); }
+
+.card-header h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.card-meta {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 15px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.card-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.card-meta i { color: var(--primary-accent); }
+
+/* Download Button */
+.btn-download {
+    margin-top: auto;
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-download:hover {
+    background: var(--primary-accent);
+    color: #000;
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+}
+
+/* Staggered Entrance Animation */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.challenge-card { animation: fadeInUp 0.5s ease backwards; }
+.challenge-card:nth-child(1) { animation-delay: 0.1s; }
+.challenge-card:nth-child(2) { animation-delay: 0.2s; }
+.challenge-card:nth-child(3) { animation-delay: 0.3s; }
+.challenge-card:nth-child(4) { animation-delay: 0.4s; }
+.challenge-card:nth-child(5) { animation-delay: 0.5s; }
+
+
+
+
+/* --- UPLOAD PAGE STYLES --- */
+.upload-container {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 20px 50px 20px; /* Top padding clears fixed header */
+    position: relative;
+    z-index: 1;
+}
+
+.upload-card {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(5, 5, 16, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    animation: slideUp 0.6s ease-out;
+    border-top: 3px solid var(--primary-accent);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Custom File Upload Area */
+.file-upload-wrapper {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    border: 2px dashed var(--glass-border);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    background: rgba(255, 255, 255, 0.02);
+    cursor: pointer;
+}
+
+.file-upload-wrapper:hover {
+    border-color: var(--primary-accent);
+    background: rgba(0, 243, 255, 0.05);
+}
+
+.file-upload-wrapper i {
+    font-size: 2rem;
+    color: var(--secondary-accent);
+    margin-bottom: 10px;
+}
+
+.file-upload-wrapper p {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.file-upload-wrapper input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Select Box Styling */
+select {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(5, 5, 16, 0.8); /* Dark background for options */
+    border: 1px solid var(--glass-border);
+    border-radius: 5px;
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    outline: none;
+    cursor: pointer;
+}
+
+select:focus {
+    border-color: var(--primary-accent);
+}
+
+
+
+
+/* --- PROFILE PAGE STYLES --- */
+.profile-container {
+    padding: 120px 50px 50px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+/* Left Card: User Info */
+.profile-card {
+    background: rgba(5, 5, 16, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 3px solid var(--secondary-accent);
+}
+
+.avatar-circle {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--secondary-accent), #000);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--primary-accent);
+    box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
+}
+
+.avatar-circle i {
+    font-size: 3.5rem;
+    color: #fff;
+}
+
+.profile-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.profile-role {
+    color: var(--primary-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 20px;
+}
+
+.stat-box h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.stat-box p {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+/* Right Card: Settings */
+.settings-card {
+    background: rgba(5, 5, 16, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 40px;
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .profile-grid { grid-template-columns: 1fr; }
 }

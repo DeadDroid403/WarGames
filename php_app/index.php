@@ -6,7 +6,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DDsec Wargames | Hack The Future</title>
+    <title>DDsec Wargames</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,36 +18,28 @@ session_start();
 <body>
 
     <header id="navbar">
-        <a href="index.php" class="logo">DDsec <span>Wargames</span></a>
-        
+        <a href="index.php" class="logo">DD<span>sec</span></a>
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
-            <li><a href="challenges.php">Challenges</a></li>
-            <li><a href="leaderboard.php">Leaderboard</a></li>
-            
-            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-                <li><a href="upload.php">Upload Challenge</a></li>
-            <?php endif; ?>
-
             <?php if (isset($_SESSION['user_id'])): ?>
+                <li><a href="challenges.php">Challenges</a></li>
+                <li><a href="upload_challenge.php">Upload Challenge</a></li>
                 <li><a href="profile.php">Profile</a></li>
                 <li><a href="logout.php" class="btn-login" style="border-color: #ff4d4d; color: #ff4d4d !important;">Logout</a></li>
             <?php else: ?>
                 <li><a href="login.php" class="btn-login">Login</a></li>
             <?php endif; ?>
         </ul>
-        
         <i class="fas fa-bars" style="color:white; font-size: 1.5rem; display: none;"></i>
     </header>
 
     <section class="hero">
         <div style="z-index: 2;">
-            <h1>CAPTURE THE FLAG</h1>
-            <p>Enter the cyber arena. Break the code. Pwn the system.<br>Join the elite league of cybersecurity experts.</p>
-            
+            <h1>CAPTURE THE SKILL</h1>
+            <p style="margin-left: auto; margin-right: auto;">Enter the cyber arena. Break the code. Pwn the system.</p>
             <div class="cta-buttons">
                 <button class="btn-main" onclick="window.location.href='challenges.php'">Start Hacking</button>
-                <button class="btn-secondary" onclick="window.location.href='leaderboard.php'">View Top Hackers</button>
+                <button class="btn-secondary" onclick="window.location.href='workingonit.php'">View Top Hackers</button>
             </div>
         </div>
 
